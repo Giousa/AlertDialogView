@@ -116,6 +116,36 @@ public class MainActivity extends AppCompatActivity {
 
     private void selectPic() {
 
+        mDepartmentLists = new ArrayList<>();
+        mDepartmentLists.add("咽喉科");
+        mDepartmentLists.add("外科");
+        mDepartmentLists.add("骨科");
+        mDepartmentLists.add("内科");
+
+        mHospitalLists = new ArrayList<>();
+        mHospitalLists.add("上海医院");
+        mHospitalLists.add("北京医院");
+        mHospitalLists.add("济南医院");
+        mHospitalLists.add("人民医院");
+        mHospitalLists.add("甲等医院");
+
+        SingleSelectView singleSelectView = new SingleSelectView(
+                this,mRootView,mScreenWidth,"选择部门",mDepartmentLists
+        );
+
+        singleSelectView.setOnSelectClickListener(new SingleSelectView.OnSelectClickListener() {
+            @Override
+            public void onCancel() {
+                System.out.println("取消");
+            }
+
+            @Override
+            public void onConfirm(String content) {
+                System.out.println("content = "+content);
+            }
+        });
+
+
     }
 
 
