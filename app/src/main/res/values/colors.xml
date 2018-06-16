@@ -6,6 +6,9 @@
 
 
     <color name="chart_text">#4c5362</color>
+    <color name="lable_blue">#3DB0FD</color>
+    <color name="stroke">#cac7c7</color>
+    <color name="black">#000000</color>
 
 
 </resources>
