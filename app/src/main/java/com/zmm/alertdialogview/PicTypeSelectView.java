@@ -16,7 +16,7 @@ import android.widget.TextView;
  * Time:下午11:41
  */
 
-public class SimpleInputDialog extends Dialog {
+public class PicTypeSelectView extends Dialog {
 
     private TextView mTitle;
     private EditText mEditText;
@@ -25,16 +25,13 @@ public class SimpleInputDialog extends Dialog {
     private String title;
     private String hint;
 
-
-
-
     private OnClickListener mOnClickListener;
 
     public void setOnClickListener(OnClickListener onClickListener) {
         mOnClickListener = onClickListener;
     }
 
-    public SimpleInputDialog(Context context, String title, String hint) {
+    public PicTypeSelectView(Context context, String title, String hint) {
         super(context,R.style.SimpleDialog);
         this.title = title;
         this.hint = hint;
@@ -53,7 +50,7 @@ public class SimpleInputDialog extends Dialog {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_simple_input_dialog);
         //按空白处不能取消dialog
-        setCanceledOnTouchOutside(false);
+//        setCanceledOnTouchOutside(false);
 
         initView();
 

@@ -16,14 +16,20 @@
         android:layout_height="wrap_content"/>
 
     <Button
-        android:text="选择性别"
+        android:text="单选"
         android:id="@+id/btn_select_gender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
-        android:text="选择照片模式"
+        android:text="时间选择器"
         android:id="@+id/btn_select_pic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:text="双选"
+        android:id="@+id/btn_select_double"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

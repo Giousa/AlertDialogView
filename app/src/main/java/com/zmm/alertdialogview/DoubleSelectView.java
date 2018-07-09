@@ -1,8 +1,6 @@
 package com.zmm.alertdialogview;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,17 +22,18 @@ import java.util.List;
  * Time:下午8:37
  */
 
-public class SingleSelectView extends View {
+public class DoubleSelectView extends View {
 
     private Context mContext;
     private int mScreenWidth;
     private String mTitle;
-    private List<String> mList;
+    private List<String> mList1, mList2;
 
-    private ListStringWheelAdapter mListStringWheelAdapter = null;
+    private ListStringWheelAdapter mListStringWheelAdapter1 = null;
+    private ListStringWheelAdapter mListStringWheelAdapter2 = null;
     private LinearLayout mRootView;
     private TextView mTvTitle;
-    private WheelView mWheelView;
+    private WheelView mWheelView1,mWheelView2;
 
     private OnSelectClickListener mOnSelectClickListener;
 
@@ -50,41 +49,54 @@ public class SingleSelectView extends View {
     }
 
 
-    public SingleSelectView(Context context,LinearLayout rootView, int screenWidth,String title, List<String> list) {
+    public DoubleSelectView(Context context, LinearLayout rootView, int screenWidth, String title, List<String> listone, List<String> listtwo) {
         super(context);
         mContext = context;
         mRootView = rootView;
         mScreenWidth = screenWidth;
         mTitle = title;
-        mList = list;
+        mList1 = listone;
+        mList2 = listtwo;
         init();
     }
 
     private void init() {
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        final View view = inflater.inflate(R.layout.pop_single_select, null);
+        final View view = inflater.inflate(R.layout.pop_double_select, null);
         Button cancel = view.findViewById(R.id.btn_select_cancel);
         Button confirm = view.findViewById(R.id.btn_select_confirm);
         mTvTitle = view.findViewById(R.id.pop_title);
-        mWheelView = view.findViewById(R.id.pop_wl);
+        mWheelView1 = view.findViewById(R.id.pop_wl_1);
+        mWheelView2 = view.findViewById(R.id.pop_wl_2);
 
         final PopupWindow popupWindow = new PopupWindow(view, mScreenWidth, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-//        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//        popupWindow.setOutsideTouchable(true);
         popupWindow.setFocusable(false);
         popupWindow.setOutsideTouchable(false);
 
 
         mTvTitle.setText(mTitle);
-        mListStringWheelAdapter = new ListStringWheelAdapter(mContext, mList);
-        mWheelView.setViewAdapter(mListStringWheelAdapter);
-        mListStringWheelAdapter.setTextColor(R.color.black);
-        mListStringWheelAdapter.setTextSize(20);
-        mWheelView.setCyclic(false);
-        mWheelView.setCurrentItem(0);
-        mWheelView.setVisibleItems(4);
-        mListStringWheelAdapter.setItemTextResource(mWheelView.getCurrentItem());
+
+
+        mListStringWheelAdapter1 = new ListStringWheelAdapter(mContext, mList1);
+        mWheelView1.setViewAdapter(mListStringWheelAdapter1);
+        mListStringWheelAdapter1.setTextColor(R.color.black);
+        mListStringWheelAdapter1.setTextSize(20);
+        mWheelView1.setCyclic(false);
+        mWheelView1.setCurrentItem(0);
+        mWheelView1.setVisibleItems(4);
+        mListStringWheelAdapter1.setItemTextResource(mWheelView1.getCurrentItem());
+
+
+        mListStringWheelAdapter2 = new ListStringWheelAdapter(mContext, mList2);
+        mWheelView2.setViewAdapter(mListStringWheelAdapter2);
+        mListStringWheelAdapter2.setTextColor(R.color.black);
+        mListStringWheelAdapter2.setTextSize(20);
+        mWheelView2.setCyclic(false);
+        mWheelView2.setCurrentItem(0);
+        mWheelView2.setVisibleItems(4);
+        mListStringWheelAdapter2.setItemTextResource(mWheelView2.getCurrentItem());
+
 
         cancel.setOnClickListener(new OnClickListener() {
             @Override
@@ -103,7 +115,7 @@ public class SingleSelectView extends View {
             public void onClick(View v) {
                 popupWindow.dismiss();
                 if(mOnSelectClickListener != null){
-                    mOnSelectClickListener.onConfirm(mList.get(mWheelView.getCurrentItem()));
+                    mOnSelectClickListener.onConfirm(mList2.get(mWheelView2.getCurrentItem()));
                 }
             }
         });
